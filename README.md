@@ -1,4 +1,4 @@
-# Gold Price Prediction Using Machine Learning
+# Gold Price Prediction Project Using Machine Learning
 
 ## Overview
 This project focuses on predicting gold prices (denoted as GLD) using machine learning techniques. The analysis involves various financial indicators such as stock prices and currency exchange rates to predict the value of gold based on historical data.
