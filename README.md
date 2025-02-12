@@ -1,6 +1,3 @@
-Sure! Here’s the updated README with the variable name changed from `gold_price` to `gold_data`:
-
-```markdown
 # Gold Price Prediction Using Machine Learning
 
 ## Overview
