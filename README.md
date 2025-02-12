@@ -151,7 +151,7 @@ We split the dataset into training and test sets to evaluate the model's perform
 
 ```python
 # Dividing the data into training and testing sets (80% - 20% split)
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=2)
 
 print(f'Training set size: {X_train.shape[0]}')
 print(f'Test set size: {X_test.shape[0]}')
@@ -163,11 +163,10 @@ We utilize the Random Forest Regressor, which is an ensemble method that combine
 
 ```python
 # Initializing the Random Forest Regressor
-regressor = RandomForestRegressor(n_estimators=100, random_state=42)
+regressor = RandomForestRegressor(n_estimators=100)
 
 # Training the model with training data
 regressor.fit(X_train, Y_train)
-print("Model training completed.")
 ```
 
 ## Model Evaluation
@@ -175,10 +174,10 @@ After training the model, we predict the GLD values using the test data and eval
 
 ```python
 # Making predictions on the test set
-predictions = regressor.predict(X_test)
+test_data_prediction = regressor.predict(X_test)
 
 # Evaluating the model using R-squared metric
-error_score = metrics.r2_score(Y_test, predictions)
+error_score = metrics.r2_score(Y_test, test_data_prediction)
 print("R-squared score: ", error_score)
 ```
 
@@ -187,15 +186,17 @@ We visualize how well the model's predictions reflect the actual GLD prices.
 
 ```python
 # Plotting actual vs predicted values
-plt.figure(figsize=(12, 6))
-plt.plot(Y_test.values, color='blue', label='Actual Values')  # Actual values from the test set
-plt.plot(predictions, color='green', label='Predicted Values')  # Predicted values
-plt.title("Comparison of Actual vs Predicted GLD Prices")
-plt.xlabel("Test Sample Index")
-plt.ylabel("GLD Price")
+plt.plot(Y_test, color='blue', label = 'Actual Value')
+plt.plot(test_data_prediction, color='green', label='Predicted Value')
+plt.title('Actual Price vs Predicted Price')
+plt.xlabel('Number of values')
+plt.ylabel('GLD Price')
 plt.legend()
 plt.show()
 ```
+
+![comparison of actual and predicted price](https://github.com/user-attachments/assets/8ddc7bca-02ee-4836-8809-a6ddce98fffd)
+
 
 ## Conclusion
 The analysis detailed in this notebook demonstrates the application of machine learning to predict gold prices using historical data from various financial indicators. The Random Forest Regressor achieved an R-squared score of approximately **0.989**, indicating a high level of predictive accuracy. This suggests that our model is capable of effectively forecasting GLD prices based on the input features.
